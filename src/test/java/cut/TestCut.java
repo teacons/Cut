@@ -48,6 +48,7 @@ public class TestCut {
     }
     @Test
     public void testRange() {
+        write();
         Cut cut = new Cut("tempin.txt", "tempout.txt", true, "100-10");
         assertThrows(IllegalArgumentException.class, cut::cutPrep);
         cut = new Cut("tempin.txt", "tempout.txt", true, "abcd");
