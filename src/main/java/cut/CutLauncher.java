@@ -39,7 +39,7 @@ public class CutLauncher {
         }
         boolean symOrWord;
         if (word) symOrWord = true;
-        if (sym) symOrWord = false;
+        else if (sym) symOrWord = false;
         else symOrWord = false;
         if (extraArgs.size() > 2) throw new IllegalArgumentException();
         String range;

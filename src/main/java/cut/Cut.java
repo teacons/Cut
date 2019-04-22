@@ -4,7 +4,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 class Cut {
     private String inFile;
@@ -34,10 +33,14 @@ class Cut {
 
     void cutPrep() {
         List<String> list = new ArrayList<>();
-        if (inFile != null)
+
             try{
-                FileInputStream file = new FileInputStream(inFile);
-                BufferedReader br = new BufferedReader(new InputStreamReader(file));
+                BufferedReader br;
+                if (inFile != null) {
+                    FileInputStream file = new FileInputStream(inFile);
+                    br = new BufferedReader(new InputStreamReader(file));
+                }
+                else br = new BufferedReader(new InputStreamReader(System.in));
                 String strLine;
                 while ((strLine = br.readLine()) != null){
                     list.add(strLine);
@@ -45,17 +48,7 @@ class Cut {
             }catch (IOException e){
                 System.out.println("Ошибка с чтением файла");
             }
-        else {
-            Scanner in = new Scanner(new InputStreamReader(System.in));
-            System.out.print("Введите текст: ");
-            String temp;
-            while (in.hasNext()) {
-                temp = in.nextLine();
-                if (temp.equals("end")) break;
-                list.add(temp);
-            }
-            in.close();
-        }
+
         List<Integer> rangeInt = rangePrep(range);
         StringBuilder builder = new StringBuilder();
         String sep = "";
@@ -86,7 +79,7 @@ class Cut {
         }
         return result;
     }
-    void writer(String result) {
+    private void writer(String result) {
         try(FileWriter writer = new FileWriter(outFile, false))
         {
             writer.write(result);
