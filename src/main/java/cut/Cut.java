@@ -57,7 +57,7 @@ class Cut {
             sep = "\n";
             builder.append(cut(s, rangeInt, symOrWord));
         }
-        if (outFile == null) System.out.println(builder.toString());
+        if (outFile == null) System.out.print(builder.toString());
         else writer(builder.toString());
     }
 
